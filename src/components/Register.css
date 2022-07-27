@@ -1,5 +1,6 @@
 .Register_div{
-    /* width: 500px; */
+    width: 500px;
     display: grid;
     justify-content:center ;
+    align-items:centre;
 }
