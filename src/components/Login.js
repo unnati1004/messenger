@@ -1,19 +1,21 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc, Timestamp } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import {updateDoc, doc} from "firebase/firestore";
 import { auth, db } from "../firebase";
 import "./Register.css";
-function Register() {
+import { Navigate, useNavigate } from "react-router-dom";
+
+function Login() {
   const [data, setData] = useState({
-    name: "",
     email: "",
     password: "",
     error: null,
     loading: false,
   });
-  const { name, email, password, error, loading } = data;
+  const {  email, password, error, loading } = data;
+  const navigator = useNavigate()
   const handlechange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -23,31 +25,28 @@ function Register() {
     // e.preventDefault();
     console.log(data);
     setData({ ...data, error: null, loading: true });
-    if (!name || !email || !password) {
+    if ( !email || !password) {
       setData({ ...data, error: "All fields are required" });
     }
     try {
-      const result = await createUserWithEmailAndPassword(
+      const result = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
       console.log(result.user);
-      await setDoc(doc(db, "users", result.user.uid), {
-        uid: result.user.uid,
-        name,
-        email,
-        createdAt: Timestamp.formDate(new Date()),
+      
+      await updateDoc(doc(db, "users", result.user.uid), {
         isOnline: true,
       });
       setData({
-        name: "",
         email: "",
         password: "",
         error: null,
         loading: false,
       });
-      
+      navigator("/");
+      // Navigate("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -55,17 +54,6 @@ function Register() {
   return (
     <div className="Register_div">
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            value={name}
-            placeholder="Enter name"
-            name="name"
-            onChange={(e) => handlechange(e)}
-          />
-        </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -75,9 +63,6 @@ function Register() {
             name="email"
             onChange={(e) => handlechange(e)}
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -90,13 +75,14 @@ function Register() {
             onChange={(e) => handlechange(e)}
           />
         </Form.Group>
-        <Form.Text className="text-muted"></Form.Text>
-        <Button variant="primary" onClick={() => handlesubmit()}>
-          Submit
+        {error?<Form.Text className="text-muted">{error}</Form.Text>:null}
+        <Button variant="primary" onClick={() => handlesubmit()
+        }>
+          Login
         </Button>
       </Form>
     </div>
   );
 }
 
-export default Register;
+export default Login;
