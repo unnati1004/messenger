@@ -47,7 +47,6 @@ function Register() {
         error: null,
         loading: false,
       });
-      
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -65,7 +64,6 @@ function Register() {
             onChange={(e) => handlechange(e)}
           />
         </Form.Group>
-
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control

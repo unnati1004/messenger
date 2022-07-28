@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import { Home } from './components/Home';
 import  CollapsibleExample from './components/CollapsibleExample';
+
 function App() {
   return (
     <div className="App">

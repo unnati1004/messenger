@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import {updateDoc, doc} from "firebase/firestore";
 import { auth, db } from "../firebase";
 import "./Register.css";
-import { Navigate, useNavigate } from "react-router-dom";
+// import { Navigate, useNavigate } from "react-router-dom";
 
 function Login() {
   const [data, setData] = useState({
@@ -15,7 +15,7 @@ function Login() {
     loading: false,
   });
   const {  email, password, error, loading } = data;
-  const navigator = useNavigate()
+  // const navigator = useNavigate();
   const handlechange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -45,7 +45,7 @@ function Login() {
         error: null,
         loading: false,
       });
-      navigator("/");
+      // navigator("/");
       // Navigate("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
@@ -78,7 +78,7 @@ function Login() {
         {error?<Form.Text className="text-muted">{error}</Form.Text>:null}
         <Button variant="primary" onClick={() => handlesubmit()
         }>
-          Login
+          {loading?'Logging in...':'Login'}
         </Button>
       </Form>
     </div>
