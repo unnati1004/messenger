@@ -1,17 +1,15 @@
 import React from "react";
-import Attachment from "./svg/Attachment";
+// import Attachment from "./svg/Attachment";
 import "./MessageForm.css"
 const MessageForm = ({handleSubmit,text,setText}) => {
+  console.log(text);
+  const handlechange=(e)=>{
+    setText(e.target.value)
+  }
   return (
     <form action="" className="message_form" onSubmit={handleSubmit}>
-      {/* <label htmlFor="">
-        <Attachment />
-      </label>
-      <input
-        type="file"
-      /> */}
       <div>
-        <input type="text" placeholder="Enter message" value={text} onChange={(e)=>setText(e.target.value)} />
+        <input type="text" placeholder="Enter message" value={text} onChange={(e)=>handlechange(e)} />
       </div>
       <div>
          <button className="btn">Send</button>
