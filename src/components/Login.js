@@ -75,8 +75,7 @@ function Login() {
           />
         </Form.Group>
         {error?<Form.Text className="text-muted">{error}</Form.Text>:null}
-        <Button variant="primary" onClick={() => handlesubmit()
-        }>
+        <Button variant="primary" onClick={() => handlesubmit()}>
           {loading?'Logging in...':'Login'}
         </Button>
       </Form>

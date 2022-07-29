@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc,setDoc ,Timestamp } from "firebase/firestore";
+import { doc,setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import {useNavigate} from "react-router-dom";
 import "./Register.css";
@@ -23,7 +23,7 @@ function Register() {
 
   const handlesubmit = async () => {
     // e.preventDefault();
-    console.log(data);
+    // console.log(data);
     setData({ ...data, error: null, loading: true });
     if (!name || !email || !password) {
       setData({ ...data, error: "All fields are required" });
@@ -35,13 +35,15 @@ function Register() {
         password
       );
       console.log("result",result.user.uid);
-     await setDoc(doc(db, "users", result.user.uid), {
-        uid: result.user.uid,
-        name,
-        email,
-        createdAt: Timestamp.formDate(new Date()),
-        isOnline: true,
-      });
+      
+      console.log("doc",doc);
+        await setDoc(doc(db, "users", result.user.uid), {
+           uid: result.user.uid,
+           name,
+           email,
+           isOnline: true,
+         });
+      
       setData({
         name: "",
         email: "",
@@ -52,6 +54,7 @@ function Register() {
       navigate("/login");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
+      console.log(err);
     }
   };
   return (
