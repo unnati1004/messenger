@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import {updateDoc, doc} from "firebase/firestore";
 import { auth, db } from "../firebase";
-import "./Register.css";
+import "./Login.css";
 import {  useNavigate } from "react-router-dom";
 
 function Login() {
@@ -45,7 +45,6 @@ function Login() {
         loading: false,
       });
       navigate("/");
-      // Navigate("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
@@ -53,6 +52,7 @@ function Login() {
   return (
     <div className="Register_div">
       <Form>
+        <h1>Login</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -78,6 +78,9 @@ function Login() {
         <Button variant="primary" onClick={() => handlesubmit()}>
           {loading?'Logging in...':'Login'}
         </Button>
+        <Form.Text className="text-muted">
+        Need help<a href="./register">No account</a>
+          </Form.Text>
       </Form>
     </div>
   );

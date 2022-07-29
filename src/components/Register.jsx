@@ -60,6 +60,7 @@ function Register() {
   return (
     <div className="Register_div">
       <Form>
+       <h2>Register</h2>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -79,9 +80,7 @@ function Register() {
             name="email"
             onChange={(e) => handlechange(e)}
           />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
+          
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -98,6 +97,9 @@ function Register() {
         <Button variant="primary" onClick={() => handlesubmit()}>
           Submit
         </Button>
+        <Form.Text className="text-muted">
+      Need help<a href="./Login">already have a account</a>
+        </Form.Text>
       </Form>
     </div>
   );

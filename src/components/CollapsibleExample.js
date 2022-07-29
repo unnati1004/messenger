@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {auth,db} from "../firebase";
 import {signOut} from "firebase/auth";
 import {updateDoc,doc} from "firebase/firestore";
-import { useContext } from 'react';
+// import { useContext } from 'react';
 function CollapsibleExample() {
   const navigate = useNavigate();
 //  const {user} = useContext(AuthContext);

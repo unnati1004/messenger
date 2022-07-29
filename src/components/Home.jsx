@@ -54,13 +54,11 @@ export const Home = () => {
     })
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
       const user2 = chat.uid;
       const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
-      
       await addDoc(collection(db, "message", id, "chat"), {
         text,
         from: user1,
@@ -74,6 +72,7 @@ export const Home = () => {
       console.log(e)
     }
   };
+  
   return (
     <div className="Home_container">
       <div className="users_container">
@@ -101,7 +100,6 @@ export const Home = () => {
           <h3 className="no_conv">Select a user to start conversation</h3>
         )}
       </div>
-
     </div>
   );
 };
