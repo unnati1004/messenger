@@ -13,14 +13,13 @@ import User from "./User";
 import "./Home.css";
 import Messageform from "./MessageForm";
 import Message from "./Message";
+
 export const Home = () => {
   const [users, setUsers] = useState([]);
   const [chat, setChat] = useState("");
   const [text, setText] = useState("");
   const [msgs, setMsgs] = useState([]);
-
   const user1 = auth.currentUser.uid;
-
 
   useEffect(() => {
     const usersRef = collection(db, "users");
@@ -42,17 +41,18 @@ export const Home = () => {
     const user2 = chat.uid;
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
     const msgsRef = collection(db,'messages',id,'chat')
+    console.log('msgsRef',msgsRef);
     const q = query(msgsRef,orderBy('createdAt','asc'))
-
+    console.log("q",q);
     onSnapshot(q,querySnapshot=>{
       let msgs =[]
       querySnapshot.forEach(doc=>{
         msgs.push(doc.data())
       })
+      console.log("msgs",msgs);
       setMsgs(msgs)
     })
   };
-  console.log("msgs",msgs);
 
 
   const handleSubmit = async (e) => {
@@ -67,7 +67,8 @@ export const Home = () => {
         to: user2,
         createdAt: Timestamp.fromDate(new Date())
       });
-      setText("");
+      // setText("");
+      console.log("TEXT",text);
     }
     catch(e){
       console.log(e)
@@ -80,6 +81,7 @@ export const Home = () => {
           return <User key={user.uid} user={user} selectUser={selectUser} />;
         })}
       </div>
+
       <div className="messenger_container">
         {chat ? (
           <>
@@ -87,7 +89,7 @@ export const Home = () => {
               <h3>{chat.name}</h3>
             </div>
             <div className="messages">
-                {msgs.length? msgs.map((msg,i)=><Message key={i} msgs={msgs}/>):null}
+                {msgs.length? msgs.map((msg,i)=><Message key={i} msg={msg}/>):null}
             </div>
             <Messageform
               handleSubmit={handleSubmit}
@@ -99,6 +101,7 @@ export const Home = () => {
           <h3 className="no_conv">Select a user to start conversation</h3>
         )}
       </div>
+
     </div>
   );
 };

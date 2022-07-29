@@ -2,7 +2,7 @@ import React from "react";
 // import Attachment from "./svg/Attachment";
 import "./MessageForm.css"
 const MessageForm = ({handleSubmit,text,setText}) => {
-  console.log(text);
+  
   const handlechange=(e)=>{
     setText(e.target.value)
   }

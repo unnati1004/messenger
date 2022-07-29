@@ -1,0 +1,11 @@
+.message_wrapper{
+    margin-top: 5px;
+    padding: 0px 5px;
+}
+p{
+    padding: 10px;
+    display: inline-block;
+    max-width: 50%;
+    text-align: left;
+    border-radius: 5px;
+}

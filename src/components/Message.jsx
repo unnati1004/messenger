@@ -1,9 +1,12 @@
 import React from 'react'
 
-const Message = () => {
+const Message = ({msg}) => {
+  console.log(msg);
   return (
-    <div>
-        <h1>message</h1>
+    <div className='message_wrapper'>
+        <p>
+          {msg.text}
+        </p>
     </div>
   )
 }
