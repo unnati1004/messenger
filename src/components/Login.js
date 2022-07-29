@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import {updateDoc, doc} from "firebase/firestore";
 import { auth, db } from "../firebase";
 import "./Register.css";
-// import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 function Login() {
   const [data, setData] = useState({
@@ -15,7 +15,7 @@ function Login() {
     loading: false,
   });
   const {  email, password, error, loading } = data;
-  // const navigator = useNavigate();
+  const navigate = useNavigate();
   const handlechange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -35,7 +35,6 @@ function Login() {
         password
       );
       console.log(result.user);
-      
       await updateDoc(doc(db, "users", result.user.uid), {
         isOnline: true,
       });
@@ -45,7 +44,7 @@ function Login() {
         error: null,
         loading: false,
       });
-      // navigator("/");
+      navigate("/");
       // Navigate("/");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });

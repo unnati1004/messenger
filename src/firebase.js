@@ -8,14 +8,13 @@ import {getFirestore} from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBW3PlYZLISEaWTeUC3B4K9R8b79Wyt8FM",
-  authDomain: "messenger-3f542.firebaseapp.com",
-  databaseURL:"http://messenger-3f542.firebaseio.com",
-  projectId: "messenger-3f542",
-  storageBucket: "messenger-3f542.appspot.com",
-  messagingSenderId: "327778279887",
-  appId: "1:327778279887:web:0bb1bc852e14126d7f72ba",
-  measurementId: "G-M0K0073YTL"
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  projectId: process.env.REACT_APP_PROJECTID,
+  storageBucket: process.env.REACT_APP_STORAGE,
+  messagingSenderId: process.env.REACT_APP_MESSENGING_SENDID,
+  appId: process.env.REACT_APP_APPID
 };
 
 // Initialize Firebase

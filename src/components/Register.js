@@ -2,8 +2,9 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc, doc, Timestamp } from "firebase/firestore";
+import { doc,setDoc ,Timestamp } from "firebase/firestore";
 import { auth, db } from "../firebase";
+import {useNavigate} from "react-router-dom";
 import "./Register.css";
 function Register() {
   const [data, setData] = useState({
@@ -14,6 +15,7 @@ function Register() {
     loading: false,
   });
   const { name, email, password, error, loading } = data;
+  const navigate= useNavigate();
   const handlechange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
@@ -32,8 +34,8 @@ function Register() {
         email,
         password
       );
-      console.log(result.user);
-      await setDoc(doc(db, "users", result.user.uid), {
+      console.log("result",result.user.uid);
+     await setDoc(doc(db, "users", result.user.uid), {
         uid: result.user.uid,
         name,
         email,
@@ -47,6 +49,7 @@ function Register() {
         error: null,
         loading: false,
       });
+      navigate("/login");
     } catch (err) {
       setData({ ...data, error: err.message, loading: false });
     }
