@@ -9,7 +9,7 @@ import {updateDoc,doc} from "firebase/firestore";
 import { useContext } from 'react';
 function CollapsibleExample() {
   const navigate = useNavigate();
-//  const {user} = useContext(AuthContext);
+ const {user} = useContext(AuthContext);
   const handleoffline=async()=>{
       await updateDoc(doc(db,'users',auth.currentUser.uid),{
         isOnline:false,
@@ -23,7 +23,7 @@ function CollapsibleExample() {
         <Navbar.Brand href="/">Messenger</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-            {auth.currentUser?
+            {user?
           (<Nav>
             <Nav.Link href="">Profile</Nav.Link>
             <Nav.Link eventKey={2} onClick={()=>handleoffline()}>

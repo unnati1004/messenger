@@ -1,0 +1,29 @@
+.Home_container{
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    overflow: hidden;
+    height: calc(100vh - 70px);
+    width: 100vw;
+    
+}
+.users_container{
+    /* border: 1px solid blue; */
+    margin-top: 10px;
+    border-right: 2px solid grey;
+    overflow-y: auto;
+}
+.message_container{
+    position: relative;
+    width: 100%;
+}
+.messager_user{
+    padding:10px;
+    text-align: center;
+    border-bottom: 2px solid grey ;
+}
+.no_conv{
+    font-size: 20px;
+    color: grey;
+    text-align: center;
+}
