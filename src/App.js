@@ -16,8 +16,8 @@ function App() {
     <div className="App">
       <CollapsibleExample/>
       <Routes>
-        {auth.currentUser?<Route exact path="/" element={<Home/>}/>:<Route exact path="/profile" element={<Profile/>}/>}
-        <Route exact path="/register" element={<Register/>}/>
+        {auth.currentUser?<Route exact path="/home" element={<Home/>}/>:<Route exact path="/profile" element={<Profile/>}/>}
+        <Route exact path="/" element={<Register/>}/>
         <Route exact path="/login" element={<Login/>}/>
       </Routes>
     </div>
