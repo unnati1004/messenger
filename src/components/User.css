@@ -4,6 +4,7 @@
     cursor: pointer;
     /* background-color: black; */
     /* border: 1px solid red; */
+    border-bottom: 2px solid rgb(210, 210, 210);
 }
 .user_info{
   display: flex;
