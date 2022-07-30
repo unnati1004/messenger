@@ -21,19 +21,19 @@ function CollapsibleExample() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/home">Messenger</Navbar.Brand>
+        <Navbar.Brand to="/home">Messenger</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
             {auth.currentUser?
           (<Nav>
-            <Nav.Link href="">Profile</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
             <Nav.Link eventKey={2} onClick={()=>handleoffline()}>
               Logout
             </Nav.Link>
           </Nav>):
           (<Nav>
-            <Nav.Link href="/">Register</Nav.Link>
-            <Nav.Link eventKey={2} href="/login">
+            <Nav.Link href="/register">Register</Nav.Link>
+            <Nav.Link eventKey={2} href="/">
               Login
             </Nav.Link>
           </Nav>)
