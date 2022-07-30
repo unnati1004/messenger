@@ -37,21 +37,30 @@ export const Home = () => {
 
   const selectUser = (users) => {
     setChat(users);
-    console.log("users", users);
+    // console.log("users", users);
     const user2 = chat.uid;
+    // console.log("user2",user2);
     const id = user1 > user2 ? `${user1 + user2}` : `${user2 + user1}`;
+    // console.log("id",id);
     const msgsRef = collection(db,'messages',id,'chat')
-    console.log('msgsRef',msgsRef);
-    const q = query(msgsRef,orderBy('createdAt','asc'))
+    // console.log('msgsRef',msgsRef);
+    const q = query(msgsRef,orderBy('createdAt'))
     console.log("q",q);
-    onSnapshot(q,querySnapshot=>{
-      let msgs =[]
-      querySnapshot.forEach(doc=>{
-        msgs.push(doc.data())
+    try{
+      onSnapshot(q,querySnapshot=>{
+        let msgs =[]
+        querySnapshot.forEach(doc=>{
+          console.log(doc);
+            msgs.push(doc.data())
+        })
+        setMsgs(msgs)
       })
       console.log("msgs",msgs);
-      setMsgs(msgs)
-    })
+
+    }
+    catch(err){
+      console.log(err)
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -65,14 +74,14 @@ export const Home = () => {
         to: user2,
         createdAt: Timestamp.fromDate(new Date())
       });
-      // setText("");
+      setText("");
       console.log("TEXT",text);
     }
     catch(e){
       console.log(e)
     }
   };
-  
+  console.log("msgs",msgs);
   return (
     <div className="Home_container">
       <div className="users_container">
