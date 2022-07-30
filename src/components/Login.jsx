@@ -79,7 +79,7 @@ function Login() {
           {loading?'Logging in...':'Login'}
         </Button>
         <Form.Text className="text-muted">
-        Need help<a href="./register">No account</a>
+        Need help<a href="/register">No account</a>
           </Form.Text>
       </Form>
     </div>

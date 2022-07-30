@@ -17,10 +17,10 @@
     position: relative;
     width: 100%;
 }
-.messager_user{
+.message_user{
     padding:10px;
     text-align: center;
-    border-bottom: 2px solid grey ;
+    border-bottom: 2px solid rgb(200, 199, 199) ;
 }
 .no_conv{
     font-size: 20px;
