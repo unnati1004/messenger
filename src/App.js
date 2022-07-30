@@ -3,17 +3,22 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Register from "./components/Register";
 import Login from "./components/Login";
+// import {Auth} from './components/context/auth';
+// import { useContext } from 'react';
 import { Home } from './components/Home';
+import Profile  from './components/Profile';
 import  CollapsibleExample from './components/CollapsibleExample';
-
+import { auth } from './firebase';
+// import PrivateRoute from './components/PrivateRoute';
 function App() {
+  // const {user} = useContext(Auth);
   return (
     <div className="App">
       <CollapsibleExample/>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/register" element={<Register/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
+        {auth.currentUser?<Route exact path="/" element={<Home/>}/>:<Route exact path="/profile" element={<Profile/>}/>}
+        <Route exact path="/register" element={<Register/>}/>
+        <Route exact path="/login" element={<Login/>}/>
       </Routes>
     </div>
   );
