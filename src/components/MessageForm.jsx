@@ -5,7 +5,6 @@ const MessageForm = ({handleSubmit,text,setText}) => {
   
   const handlechange=(e)=>{
     setText(e.target.value)
-    console.log(text);
   }
   return (
     <form action="" className="message_form" onSubmit={handleSubmit}>
