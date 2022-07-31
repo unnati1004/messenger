@@ -26,13 +26,13 @@ function CollapsibleExample() {
         <Navbar.Collapse id="responsive-navbar-nav">
             {auth.currentUser?
           (<Nav>
-            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link href="./profile">Profile</Nav.Link>
             <Nav.Link eventKey={2} onClick={()=>handleoffline()}>
               Logout
             </Nav.Link>
           </Nav>):
           (<Nav>
-            <Nav.Link href="/register">Register</Nav.Link>
+            <Nav.Link href="./register">Register</Nav.Link>
             <Nav.Link eventKey={2} href="/">
               Login
             </Nav.Link>
