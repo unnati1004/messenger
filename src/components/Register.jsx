@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc,setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./Register.css";
 function Register() {
   const [data, setData] = useState({
@@ -36,7 +36,7 @@ function Register() {
       );
       console.log("result",result.user.uid);
       
-      console.log("doc",doc);
+      // console.log("doc",doc);
         await setDoc(doc(db, "users", result.user.uid), {
            uid: result.user.uid,
            name,
@@ -98,7 +98,7 @@ function Register() {
           Submit
         </Button>
         <Form.Text className="text-muted">
-      Need help<a href="./Login">already have a account</a>
+      Need help <Link to={'/'}>already have a account</Link> 
         </Form.Text>
       </Form>
     </div>

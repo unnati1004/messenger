@@ -6,7 +6,7 @@ import {updateDoc, doc} from "firebase/firestore";
 import { auth, db } from "../firebase";
 import "./Login.css";
 import {  useNavigate } from "react-router-dom";
-
+import {Link} from "react-router-dom";
 function Login() {
   const [data, setData] = useState({
     email: "",
@@ -79,7 +79,7 @@ function Login() {
           {loading?'Logging in...':'Login'}
         </Button>
         <Form.Text className="text-muted">
-        Need help<a href="./register">No account</a>
+        Need help <Link to={'/register'}>No account</Link> 
           </Form.Text>
       </Form>
     </div>
